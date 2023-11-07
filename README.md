@@ -7,5 +7,17 @@ Conocer versión cypress:
 node app
 ```
 
+Abrir cypress:
+
+```sh
+npx cypress open
+```
+Correr los test cypress en consola:
+
+```sh
+npx cypress run
+```
+
+
 
 

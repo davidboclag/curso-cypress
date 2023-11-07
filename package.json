@@ -1,5 +1,11 @@
 {
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run:chrome": "cypress run -b Chrome",
+    "cy:run:edge": "cypress run -b Edge"
+  },
   "devDependencies": {
+    "@cypress/xpath": "^2.0.3",
     "cypress": "^9.7.0"
   }
 }
