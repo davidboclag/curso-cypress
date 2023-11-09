@@ -1,9 +1,9 @@
 describe('Loguear - Basic Auth y Auth conFroms', () => {
 
-    beforeEach(() => {
-        cy.task('db:teardown')
-        cy.task('db:seeding')
-    });
+    // beforeEach(() => {
+    //     cy.task('db:teardown')
+    //     cy.task('db:seeding')
+    // });
 
     it('Sin loguear', () => {
         cy.visit('https://the-internet.herokuapp.com/basic_auth');
