@@ -26,7 +26,7 @@ describe('Loguear - Basic Auth y Auth conFroms', () => {
         cy.get('p').should('include.text', 'Congratulations');
     });
 
-    it('Hagologin en un form, usando un request del tipo POST', () => {
+    it('Hago login en un form, usando un request del tipo POST', () => {
         cy.visit('https://the-internet.herokuapp.com');
         cy.request({
             method: 'POST',
@@ -39,6 +39,11 @@ describe('Loguear - Basic Auth y Auth conFroms', () => {
         })
         cy.getCookie('rack.session').should('exist');
         cy.visit('https://the-internet.herokuapp.com/secure');
+        cy.get('.subheader').should('include.text', 'Welcome to the Secure Area');
+    });
+
+    it('Mismo test de arriba, pero con ellogin como comando personalizado', () => {
+        cy.login2();
         cy.get('.subheader').should('include.text', 'Welcome to the Secure Area');
     });
 });

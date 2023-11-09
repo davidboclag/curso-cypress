@@ -1,7 +1,6 @@
 import { defineConfig } from 'cypress'
 
 export default defineConfig({
-  experimentalSessionAndOrigin: true,
   e2e: {
     // We've imported your old cypress plugins here.
     // You may want to clean this up later by importing these.
@@ -9,4 +8,7 @@ export default defineConfig({
       return require('./cypress/plugins/index.js')(on, config)
     },
   },
+  projectId: "ar115f",
+  reporter: 'mochawesome',
+  video: true
 })

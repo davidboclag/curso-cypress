@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 Cypress.Commands.add('iframe', { prevSubject: 'element' }, ($iframe, selector) => {
-    Cyprees.log({
+    Cypress.log({
         name: 'iframe',
         consoleProps() {
             return {
@@ -54,4 +54,27 @@ Cypress.Commands.add('login', () => {
     cy.getCookie('_ga').should('exist');
     cy.intercept('POST', '/auth');
     cy.visit('https://restful-booker.herokuapp.com');
+});
+
+Cypress.Commands.add('login2', () => {
+    cy.visit('https://the-internet.herokuapp.com');
+    cy.request({
+        method: 'POST',
+        url: '/authenticate',
+        form: true,
+        body: {
+            username: 'tomsmith',
+            password: 'SuperSecretPassword!'
+        }
+    })
+    cy.getCookie('rack.session').should('exist');
+    cy.visit('https://the-internet.herokuapp.com/secure');
+});
+
+Cypress.Commands.add('visitInSameTab', (url) => {
+    cy.on('windows:before:load', (win) => {
+        cy.stub(win, 'open').as('windowsOpen').callsFake(() => {
+            cy.visit(url);
+        });
+    });
 });
