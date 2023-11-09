@@ -27,6 +27,14 @@ module.exports = (on, config) => {
     },
     calculateSum(a, b) {
       return a + b;
+    },
+    'db:teardown': () => {
+      const teardown = require('../db/teardown.js');
+      return teardown()
+    },
+    'db:seeding': () => {
+      constseeding = require('../db/seeding.js')
+      return seeding();
     }
   });
 }

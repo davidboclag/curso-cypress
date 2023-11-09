@@ -23,3 +23,35 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('iframe', { prevSubject: 'element' }, ($iframe, selector) => {
+    Cyprees.log({
+        name: 'iframe',
+        consoleProps() {
+            return {
+                iframe: $iframe,
+            }
+        }
+    });
+    return new Cypress.Promise(resolve => {
+        resolve($iframe.contents().find(selector))
+    });
+});
+
+Cypress.Commands.add('login', () => {
+    cy.visit('https://restful-booker.herokuapp.com');
+    cy.request({
+        method: 'POST',
+        url: '/auth',
+        form: true,
+        body: {
+            username: "admin",
+            password: "password123"
+        }
+    }).then((res) => {
+        cy.log(res.body.token)
+    });
+    cy.getCookie('_ga').should('exist');
+    cy.intercept('POST', '/auth');
+    cy.visit('https://restful-booker.herokuapp.com');
+});

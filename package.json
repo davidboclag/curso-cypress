@@ -1,4 +1,7 @@
 {
+  "env": {
+    "NO_PROXY": "localhost.pepito.com"
+  },
   "scripts": {
     "cy:open": "cypress open",
     "cy:run:chrome": "cypress run -b Chrome",
@@ -6,6 +9,7 @@
   },
   "devDependencies": {
     "@cypress/xpath": "^2.0.3",
-    "cypress": "^9.7.0"
+    "cypress": "^9.7.0",
+    "typescript": "^5.2.2"
   }
 }
